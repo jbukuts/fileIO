@@ -15,15 +15,15 @@ Comparison of the APIs and different file descriptors
 
 |  API       | Description                                                                               |
 |:----------:|-------------------------------------------------------------------------------------------|
-| `open()`   | Useful for allocating an amount of memory that is less than a page size                   |
-| `fopen()`  | Allows for buffering IO that can be faster than open                                      |
+| `open()`   | Lower level POXIS system call that does not make use of buffering therefore slower than `fopen()`. Desirable when buffering is not optimal, for instance, with things like reading/writing to pipes                 |
+| `fopen()`  | Allows for buffering IO that can be faster than open and also part of the C standard library making it portable to use between systems                                     |
 | `mmap()`   | A method of memory-mapped file I/O that implements demand paging. The file is mapped to pages of the virtual address space and then to a block of hardware memory         |
 
 |  Descriptor| Description                                                                               |
 |:----------:|-------------------------------------------------------------------------------------------|
-| File Descriptor       | Integer that desctibes that possible actions that can performed on given file. For instance                   |
-| File Pointer          | Allows for buffering IO that can be faster than open                                      |
-| File Desc Struct      |        |
-| Open File Description |        |
+| File Descriptor       | Integer that OS uses to keep track of all open files.                 |
+| File Pointer          | C standard library-level construct, used to represent a file. Wraps the file descriptor, add buffering among other things to make file I/O easier                                   |
+| File Desc Struct      | The kernel keeps a table of open file descriptors for each process, mapping these small integers to the file descriptor structure. This struct is `struct fd` |
+| Open File Description | The open file description contains information about the way the file is open (meaning mode) as well as the position in the file system. The open file description structure is in `struct file`        |
 
 
