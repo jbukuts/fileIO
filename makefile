@@ -10,18 +10,21 @@ LINK = $(CC) $(FLAGS) -o  # final linked build to binary executable
 
 COMPILE = $(CC) $(FLAGS) -c  # compilation to inter	mediary .o files
 
+RED =\033[0;31m
+NC =\033[0m # No Color
+
 test: clean sub_one sub_two sub_three
-	@echo TESTING ONE;
+	@echo "\n${RED}TESTING ONE${NC}"
 	./sub_one text_files/test.txt
-	@echo PRINTING NEW FILE:;
+	@echo "${RED}PRINTING NEW FILE${NC}"
 	@cat text_files/test.txt
-	@echo TESTING TWO;
+	@echo "\n${RED}TESTING TWO${NC}"
 	./sub_two text_files/test.txt
-	@echo PRINTING NEW FILE:;
+	@echo "${RED}PRINTING NEW FILE${NC}"
 	@cat text_files/test.txt
-	@echo TESTING THREE;
+	@echo "\n${RED}TESTING THREE${NC}"
 	./sub_three text_files/test.txt
-	@echo PRINTING NEW FILE:;
+	@echo "${RED}PRINTING NEW FILE${NC}"
 	@cat text_files/test.txt
 
 build: sub_one sub_two sub_three
