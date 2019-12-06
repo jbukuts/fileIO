@@ -55,6 +55,7 @@ int main(int argc, char* argv[]) {
     // unmap and close the file
     munmap(file, size);
     close(fd);
+    printf("CLOSED THE FILE\n");
 
     return 0;
 }
